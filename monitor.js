@@ -8,24 +8,21 @@ const nodemailer = require('nodemailer');
   try {
     await page.goto('https://online.unimelb.edu.au/ppc/master-education');
 
-    // Fill in form fields (update selectors & dummy data)
-    await page.fill('input[name="firstName"]', 'Test');
-    await page.fill('input[name="lastName"]', 'User');
-    await page.fill('input[name="email"]', 'test@example.com');
-    await page.fill('input[name="phone"]', '0412345678');
-
-    // Select dropdown or radio if needed
-    // await page.selectOption('select[name="program"]', 'Master of Education');
+    // Fill in first page of lead form
+    await page.selectOption('select[name="study"]', 'Master of Education'); // "What would you like to study"
+    await page.selectOption('select[name="qualifiedTeacher"]', 'Yes');      // "Are you a qualified teacher"
+    await page.fill('input[name="firstName"]', 'Test');                      // First name
+    await page.fill('input[name="lastName"]', 'User');                       // Last name
 
     // Click Continue
-    await page.click('button#continue'); // update selector if needed
+    await page.click('button#continue'); // Update selector if needed
 
-    // Wait for second step to appear
-    const secondStepVisible = await page.isVisible('form#step2'); // update selector
+    // Wait/check for second step
+    const secondStepVisible = await page.isVisible('form#step2'); // Update selector to second step
     if (!secondStepVisible) {
       console.log('ALERT: Second step did not load!');
 
-      // Send email alert (optional)
+      // Optional: email alert
       /*
       let transporter = nodemailer.createTransport({
         service: 'gmail',
