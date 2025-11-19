@@ -1,0 +1,24 @@
+name: Lead Form Monitor
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # runs every 30 minutes
+  workflow_dispatch: # allows manual trigger
+
+jobs:
+  monitor-form:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run monitor script
+        run: node monitor.js
