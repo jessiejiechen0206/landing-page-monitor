@@ -1,12 +1,11 @@
 {
-  "name": "landing-page-monitor",
+  "name": "lead-form-monitor",
   "version": "1.0.0",
-  "description": "Monitor UniMelb PPC landing page Continue button",
-  "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "monitor": "node monitor.js"
   },
-  "devDependencies": {
-    "@playwright/test": "^1.43.0"
+  "dependencies": {
+    "playwright": "^1.35.0",
+    "nodemailer": "^6.9.5"
   }
 }
